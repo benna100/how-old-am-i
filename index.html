@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Age Calculator</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold text-gray-900 mt-8 mb-4">
+        Never forget how old you are again
+      </h1>
+      <h2 class="text-3l font-bold text-gray-900 mt-8 mb-4">
+        Your age is saved, so bookmark the page for when you forget!
+      </h2>
+      <p class="text-gray-700 mb-4">Enter your date of birth:</p>
+      <input
+        type="date"
+        id="dob"
+        class="border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline w-full"
+      />
+      <button
+        onclick="saveDob()"
+        class="mt-4 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        Save Date of Birth
+      </button>
+      <p class="mt-4 text-gray-700">
+        Your age: <span id="age" class="text-blue-500 font-bold"></span>
+      </p>
+    </div>
+
+    <script>
+      function saveDob() {
+        // Get the date of birth from the input field
+        var dob = document.getElementById("dob").value;
+
+        // Save the date of birth in local storage
+        localStorage.setItem("dob", dob);
+
+        // Calculate and display the age
+        calculateAndDisplayAge();
+      }
+
+      // This function is called when the page is first loaded
+      window.onload = function () {
+        // Check if the date of birth is already saved in local storage
+        var savedDob = localStorage.getItem("dob");
+
+        // If the date of birth is saved in local storage, calculate and display the age
+        if (savedDob) {
+          calculateAndDisplayAge();
+        }
+      };
+
+      function calculateAndDisplayAge() {
+        // Get the date of birth from local storage
+        var dob = localStorage.getItem("dob");
+
+        // Calculate the age based on the date of birth
+        var age = calculateAgeFromDob(dob);
+
+        // Display the age on the screen
+        document.getElementById("age").innerHTML = age;
+      }
+
+      function calculateAgeFromDob(dob) {
+        // Calculate the difference in milliseconds between the given date of birth and the current time
+        var timeDiff = Date.now() - new Date(dob).getTime();
+
+        // Convert the time difference from milliseconds to years
+        var age = Math.abs(new Date(timeDiff).getUTCFullYear() - 1970);
+
+        return age;
+      }
+    </script>
+  </body>
+</html>
