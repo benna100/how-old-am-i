@@ -1,1 +1,1 @@
-All code is created by chatGPT
+Most of code is created by chatGPT
