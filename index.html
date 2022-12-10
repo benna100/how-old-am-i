@@ -10,10 +10,10 @@
   <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="container mx-auto px-4">
             <h1 class="text-3xl font-bold text-gray-900 mt-8 mb-4">
-        Never forget how old you are again
+        Never forget the birth date and age of people you know
       </h1>
       <h2 class="text-3l font-bold text-gray-900 mt-8 mb-4">
-        Your age is saved, so bookmark the page for when you forget!
+        People 
       </h2>
       <p class="text-gray-700 mb-4">
         Enter the name and date of birth of the person you want to add:
@@ -55,7 +55,7 @@
         var savedPeopleList = document.getElementById("saved-people");
         var newLi = document.createElement("li");
         newLi.innerHTML =
-          name + " (" + calculateAgeFromDob(dob) + " years old)";
+          `${name} is born the ${dob} and is ${calculateAgeFromDob(dob)} years old`;
         savedPeopleList.appendChild(newLi);
 
         // Clear the input fields
@@ -82,7 +82,7 @@
             // Calculate and display the person's age
             var age = calculateAgeFromDob(person.dob);
             var newSpan = document.createElement("span");
-            newSpan.innerHTML = " (" + age + " years old)";
+            newSpan.innerHTML = `${name} is born the ${person.dob} and is ${calculateAgeFromDob(person.dob)} years old`;
             newLi.appendChild(newSpan);
           }
         }
